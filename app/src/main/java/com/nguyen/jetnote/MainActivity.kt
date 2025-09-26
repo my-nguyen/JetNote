@@ -20,7 +20,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetNoteTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
-                    NoteScreen(modifier = Modifier.padding(padding))
+                    NoteScreen(
+                        modifier = Modifier.padding(padding),
+                        notes = emptyList(),
+                        onAddNote = {},
+                        onRemoveNote = {})
                 }
             }
         }

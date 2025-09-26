@@ -24,10 +24,16 @@ import androidx.compose.ui.unit.dp
 import com.nguyen.jetnote.R
 import com.nguyen.jetnote.components.NoteButton
 import com.nguyen.jetnote.components.NoteInputText
+import com.nguyen.jetnote.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoteScreen(modifier: Modifier = Modifier) {
+fun NoteScreen(
+    modifier: Modifier = Modifier,
+    notes: List<Note>,
+    onAddNote: (Note) -> Unit,
+    onRemoveNote: (Note) -> Unit
+) {
     var titleState by remember { mutableStateOf("") }
     var descriptionState by remember { mutableStateOf("") }
 
@@ -58,9 +64,15 @@ fun NoteScreen(modifier: Modifier = Modifier) {
                 value = descriptionState,
                 label = "Add a note",
                 onValueChange = {
-                    if (it.all { char -> char.isLetter() || char.isWhitespace() }) descriptionState = it
+                    if (it.all { char -> char.isLetter() || char.isWhitespace() }) descriptionState =
+                        it
                 })
-            NoteButton(text = "Save", onClick = {})
+            NoteButton(text = "Save", onClick = {
+                if (titleState.isNotEmpty() && descriptionState.isNotEmpty()) {
+                    titleState = ""
+                    descriptionState = ""
+                }
+            })
         }
     }
 }
@@ -68,5 +80,5 @@ fun NoteScreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun NoteScreenPreview() {
-    NoteScreen()
+    NoteScreen(notes = emptyList(), onAddNote = {}, onRemoveNote = {})
 }
