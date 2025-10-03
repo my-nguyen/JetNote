@@ -80,7 +80,8 @@ fun NoteScreen(
                 value = descriptionState,
                 label = "Add a note",
                 onValueChange = {
-                    if (it.all { char -> char.isLetter() || char.isWhitespace() }) descriptionState = it
+                    if (it.all { char -> char.isLetter() || char.isWhitespace() }) descriptionState =
+                        it
                 })
             NoteButton(text = "Save", onClick = {
                 if (titleState.isNotEmpty() && descriptionState.isNotEmpty()) {
@@ -121,7 +122,6 @@ fun NoteRow(modifier: Modifier = Modifier, note: Note, onNoteClicked: (Note) -> 
             Text(text = note.title, style = MaterialTheme.typography.titleMedium)
             Text(text = note.description, style = MaterialTheme.typography.bodyMedium)
             Text(
-                // text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
                 text = note.entryDate.toString(),
                 style = MaterialTheme.typography.bodySmall
             )
