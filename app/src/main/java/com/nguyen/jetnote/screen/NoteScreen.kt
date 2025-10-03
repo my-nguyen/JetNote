@@ -121,7 +121,8 @@ fun NoteRow(modifier: Modifier = Modifier, note: Note, onNoteClicked: (Note) -> 
             Text(text = note.title, style = MaterialTheme.typography.titleMedium)
             Text(text = note.description, style = MaterialTheme.typography.bodyMedium)
             Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
+                // text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
+                text = note.entryDate.toString(),
                 style = MaterialTheme.typography.bodySmall
             )
         }
