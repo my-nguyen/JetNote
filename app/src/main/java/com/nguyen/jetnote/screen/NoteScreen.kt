@@ -38,6 +38,7 @@ import com.nguyen.jetnote.components.NoteButton
 import com.nguyen.jetnote.components.NoteInputText
 import com.nguyen.jetnote.data.NoteDataSource
 import com.nguyen.jetnote.model.Note
+import com.nguyen.jetnote.util.formatDate
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -122,7 +123,7 @@ fun NoteRow(modifier: Modifier = Modifier, note: Note, onNoteClicked: (Note) -> 
             Text(text = note.title, style = MaterialTheme.typography.titleMedium)
             Text(text = note.description, style = MaterialTheme.typography.bodyMedium)
             Text(
-                text = note.entryDate.toString(),
+                text = formatDate(note.entryDate.time),
                 style = MaterialTheme.typography.bodySmall
             )
         }
